@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/ui/screens/home.dart';
 import 'package:weather_app/ui/screens/extract_weather.dart';
+import 'package:weather_app/ui/screens/search_weather.dart';
 
 class MdsApp extends StatelessWidget {
   const MdsApp({Key key}) : super(key: key);
@@ -17,6 +18,8 @@ class MdsApp extends StatelessWidget {
       routes: {
         '/extract_weather': (context) => Extract_weather(),
         '/home': (context) => Home(),
+        '/searchWeather': (context) => SearchWeather()
+
       },
       initialRoute: '/home',
       // home: Home(),

@@ -40,4 +40,4 @@ class Weather {
        wind: 13,
        humidity: 24,
        chanceRain: 87,
-       location: "Minsk");
+       location: "Angers");

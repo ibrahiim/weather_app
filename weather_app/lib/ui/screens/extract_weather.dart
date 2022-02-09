@@ -131,6 +131,8 @@ class ExtraWeather extends StatelessWidget {
   }
 }
 class CurrentWeather extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return  GlowContainer(
@@ -172,11 +174,15 @@ class CurrentWeather extends StatelessWidget {
             children: [
 
                   Icon(CupertinoIcons.map_fill, color: Colors.white),
-                  Text(
+              GestureDetector(
+                  onTap: () async {
+                    await Navigator.of(context).pushNamed('/searchWeather');
+                  },
+                  child :Text(
                     " " + currentTemp.location,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
-
+              ),
 
             ],
           ),
