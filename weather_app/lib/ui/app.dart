@@ -3,7 +3,7 @@ import 'package:weather_app/ui/screens/home.dart';
 import 'package:weather_app/ui/screens/extract_weather.dart';
 
 class MdsApp extends StatelessWidget {
-  const MdsApp({Key? key}) : super(key: key);
+  const MdsApp({Key key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
