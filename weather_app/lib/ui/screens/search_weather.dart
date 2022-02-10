@@ -38,6 +38,20 @@ class _SearchWeatherState extends State<SearchWeather> {
     if(value.isNotEmpty) {
       final Weather _weather = await widget.repository
           .searchWeathers(value);
+      if(_weather==null){
+        showDialog(context: context, builder: (BuildContext context){
+          return AlertDialog(
+            backgroundColor: Color(0xff030317),
+            title:Text("City not found"),
+            content: Text("Please check the city name"),
+            actions: [
+              TextButton(onPressed: (){
+                Navigator.of(context).pop();
+              }, child: Text("Ok"))
+            ],
+          );
+        });
+      }
       Navigator.push(
         context,
         MaterialPageRoute(

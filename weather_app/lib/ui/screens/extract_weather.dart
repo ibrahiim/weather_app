@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'dart:convert';
+import 'package:provider/provider.dart';
+import 'package:weather_app/blocs/weather_cubit.dart';
 
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/repository/preferences_repository.dart';
@@ -95,6 +97,7 @@ class _CurrentWeatherState extends State<CurrentWeather> {
         children: [
           GestureDetector(
             onTap: () {
+              Provider.of<WeatherCubit>(context, listen: false).addCompany(_weather);
               Navigator.push(context,
                   MaterialPageRoute(builder: (BuildContext context) {
                     return Home();
