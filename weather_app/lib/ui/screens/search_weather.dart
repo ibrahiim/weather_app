@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather.dart';
+import 'package:weather_app/repository/preferences_repository.dart';
+import 'package:weather_app/repository/repository.dart';
+import 'package:weather_app/repository/weather_repository.dart';
 import 'package:weather_app/ui/screens/extract_weather.dart';
 
 
 class SearchWeather extends StatefulWidget {
   SearchWeather({Key key}) : super(key: key);
-
+  final Repository repository = Repository(WeatherRepository(),PreferencesRepository());
 
 
   @override
@@ -33,10 +36,12 @@ class _SearchWeatherState extends State<SearchWeather> {
      textInputAction: TextInputAction.search,
     onSubmitted: (value)async {
     if(value.isNotEmpty) {
+      final Weather _weather = await widget.repository
+          .searchWeathers(value);
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Extract_weather(),
+          builder: (context) => Extract_weather(_weather),
         ),
       );
     }

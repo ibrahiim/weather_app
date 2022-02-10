@@ -1,32 +1,143 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class Weather {
-   int max;
-    int min;
-    int current;
+   double max;
+   double min;
+   double current;
     String name;
     String day;
-    int wind;
+   double wind;
     int humidity;
-    int chanceRain;
    String image;
     String time;
     String location;
 
    Weather(
-          {this.max,
+          this.max,
           this.min,
           this.name,
           this.day,
           this.wind,
           this.humidity,
-          this.chanceRain,
           this.image,
           this.current,
           this.time,
-          this.location});
+          this.location);
+   String toJson() {
+     return jsonEncode({
+      'max':max,
+     'min':min,
+     'current':current,
+     'name':name,
+     'day':day,
+     'wind':wind,
+     'humidity':humidity,
+     'image' :image,
+     'time' :time,
+     'location' :location,
+
+     });
+   }
+
+   factory Weather.fromJson(String json) {
+     Map<String, dynamic> map = jsonDecode(json);
+     return Weather(
+       map['max'],
+       map['min'],
+       map['current'],
+       map['name'],
+       map['day'],
+       map['wind'],
+       map['humidity'],
+       map['image'],
+       map['time'],
+       map['location'],
+       //LatLng(map['latitude'], map['longitude'])
+     );
+   }
+   static String  findIcon(String name,bool type){
+     if(type){
+       switch(name){
+         case "Clouds":
+           return "assets/sunny.png";
+           break;
+         case "Rain":
+           return "assets/rainy.png";
+           break;
+         case "Drizzle":
+           return "assets/rainy.png";
+           break;
+         case "Thunderstorm":
+           return "assets/thunder.png";
+           break;
+         case "Snow":
+           return "assets/snow.png";
+           break;
+         default:
+           return "assets/sunny.png";
+       }
+     }else{
+       switch(name){
+         case "Clouds":
+           return "assets/sunny_2d.png";
+           break;
+         case "Rain":
+           return "assets/rainy_2d.png";
+           break;
+         case "Drizzle":
+           return "assets/rainy_2d.png";
+           break;
+         case "Thunderstorm":
+           return "assets/thunder_2d.png";
+           break;
+         case "Snow":
+           return "assets/snow_2d.png";
+           break;
+         default:
+           return "assets/sunny_2d.png";
+       }
+     }
+   }
+
+     factory Weather.fromWeaJson(Map<String, dynamic> json) {
+       DateTime date = DateTime.now();
+       int hour = int.parse(DateFormat("hh").format(date));
+
+
+     final String max = (json['main']['temp_max']).toString();
+     final String min= (json['main']['temp_min']).toString();
+     final String current = (json['main']['temp']).toString();
+     final String name = (json['weather'][0]['main']).toString();
+     final String day = DateFormat("EEEE dd MMMM").format(date);
+     final String wind = (json['wind']['speed']).toString();
+     final String humidity = (json['main']['humidity']).toString();
+     final String image = findIcon(json['weather'][0]['main'], true);
+     final String time= Duration(hours: hour+2).toString().split(":")[0]+":00";
+     final String location=(json['name']).toString();
+
+
+     /*final Map<String, dynamic> geometry = json['geometry'] ?? {};
+    final List<dynamic> coordinates = geometry['coordinates'] ?? [];
+    final double latitude = coordinates[1] ?? 0;
+    final double longitude = coordinates[0] ?? 0;
+    final LatLng position = LatLng(latitude, longitude);*/
+
+       return Weather(
+           double.parse(max).round()??0,
+           double.parse(min).round()??0,
+           name,
+           day,
+           double.parse(wind).round()??0,
+       int.parse(humidity).round()??0,
+           image,
+           double.parse(current).round()??0,
+           time,
+           location);
+   }
+
 }
-   List<Weather> todayWeather = [
+   /*List<Weather> todayWeather = [
       Weather(current: 23, image: "assets/rainy_2d.png", time: "10:00"),
       Weather(current: 21, image: "assets/thunder_2d.png", time: "11:00"),
       Weather(current: 22, image: "assets/rainy_2d.png", time: "12:00"),
@@ -40,4 +151,4 @@ class Weather {
        wind: 13,
        humidity: 24,
        chanceRain: 87,
-       location: "Angers");
+       location: "Angers");*/
