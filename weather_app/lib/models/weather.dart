@@ -2,13 +2,13 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 
 class Weather {
-   double max;
-   double min;
-   double current;
+   num max;
+   num min;
+   num current;
     String name;
     String day;
-   double wind;
-    int humidity;
+   num wind;
+    num humidity;
    String image;
     String time;
     String location;
@@ -124,18 +124,22 @@ class Weather {
     final LatLng position = LatLng(latitude, longitude);*/
 
        return Weather(
-           double.parse(max).round()??0,
-           double.parse(min).round()??0,
+           num.parse(max).round()??0,
+           num.parse(min).round()??0,
            name,
            day,
-           double.parse(wind).round()??0,
-       int.parse(humidity).round()??0,
+           num.parse(wind).round()??0,
+      num.parse(humidity).round()??0,
            image,
-           double.parse(current).round()??0,
+           num.parse(current).round()??0,
            time,
            location);
    }
-
+   @override
+  bool operator ==(Object other) {
+    // TODO: implement ==
+    return other is Weather && location == other.location;
+  }
 }
    /*List<Weather> todayWeather = [
       Weather(current: 23, image: "assets/rainy_2d.png", time: "10:00"),

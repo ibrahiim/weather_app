@@ -97,7 +97,12 @@ class _CurrentWeatherState extends State<CurrentWeather> {
         children: [
           GestureDetector(
             onTap: () {
-              Provider.of<WeatherCubit>(context, listen: false).addCompany(_weather);
+              bool ok= false;
+              List<Weather> weathers =Provider.of<WeatherCubit>(context, listen: false).state;
+
+              if(weathers.contains(_weather)==false){
+                Provider.of<WeatherCubit>(context, listen: false).addCompany(_weather);
+              }
               Navigator.push(context,
                   MaterialPageRoute(builder: (BuildContext context) {
                     return Home();

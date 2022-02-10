@@ -26,6 +26,9 @@ class _SearchWeatherState extends State<SearchWeather> {
       body: Column(
 
         children: [
+          SizedBox(
+            height: 10,
+          ),
           TextField(
             decoration: InputDecoration(
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -41,7 +44,7 @@ class _SearchWeatherState extends State<SearchWeather> {
       if(_weather==null){
         showDialog(context: context, builder: (BuildContext context){
           return AlertDialog(
-            backgroundColor: Color(0xff030317),
+            backgroundColor: Color(0xFFf9f9f9),
             title:Text("City not found"),
             content: Text("Please check the city name"),
             actions: [

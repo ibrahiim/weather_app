@@ -27,6 +27,7 @@ class PreferencesRepository {
       return Weather.fromJson(element);
     }).toList();
 
+
     return weathers;
   }
 
