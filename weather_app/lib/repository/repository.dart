@@ -5,7 +5,7 @@ import 'package:weather_app/repository/preferences_repository.dart';
 import 'package:weather_app/repository/weather_repository.dart';
 
 class Repository {
-  PreferencesRepository _preferencesRepository;
+  final PreferencesRepository _preferencesRepository;
 
   Repository(this._weatherRepository,this._preferencesRepository);
 

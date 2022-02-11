@@ -21,18 +21,18 @@ class _SearchWeatherState extends State<SearchWeather> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff030317),
+      backgroundColor: const Color(0xff030317),
 
       body: Column(
 
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           TextField(
             decoration: InputDecoration(
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                fillColor: Color(0xFFf9f9f9),
+                fillColor: const Color(0xFFf9f9f9),
                 filled: true,
                 hintText:"Enter a city Name"
             ),
@@ -44,13 +44,13 @@ class _SearchWeatherState extends State<SearchWeather> {
       if(_weather==null){
         showDialog(context: context, builder: (BuildContext context){
           return AlertDialog(
-            backgroundColor: Color(0xFFf9f9f9),
-            title:Text("City not found"),
-            content: Text("Please check the city name"),
+            backgroundColor: const Color(0xFFf9f9f9),
+            title:const Text("City not found"),
+            content: const Text("Please check the city name"),
             actions: [
               TextButton(onPressed: (){
                 Navigator.of(context).pop();
-              }, child: Text("Ok"))
+              }, child: const Text("Ok"))
             ],
           );
         });

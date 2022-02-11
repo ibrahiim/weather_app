@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/blocs/weather_cubit.dart';
 import 'package:weather_app/models/weather.dart';
@@ -32,7 +31,7 @@ class _HomeState extends State<Home> {
         await Navigator.of(context).pushNamed('/extract_weather') ;
 
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       body: SingleChildScrollView(child: BlocBuilder<WeatherCubit, List<Weather>>(
         builder: (context, state) {
@@ -48,14 +47,14 @@ class _HomeState extends State<Home> {
                             height: 400,
             	                fit: BoxFit.cover,),),
               Container(
-               decoration: BoxDecoration(color: Colors.black38),
+               decoration: const BoxDecoration(color: Colors.black38),
               ),
                 Container(
-                 padding: EdgeInsets.all(100),
+                 padding: const EdgeInsets.all(100),
                   child: Column(
                     children: [
-                      SizedBox(height: 120,),
-                      Text("Weather app",
+                      const SizedBox(height: 120,),
+                      const Text("Weather app",
                       style: TextStyle(fontSize: 35, color: Colors.black),
 
                       ),
@@ -74,7 +73,7 @@ class _HomeState extends State<Home> {
               ]),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Text("Favorites",style: TextStyle(fontSize: 18, color: Colors.red),),
                   Icon(
                     Icons.favorite,
@@ -92,7 +91,7 @@ class _HomeState extends State<Home> {
                   Weather company = state[index];
                   return ListTile(
                     leading: const Icon(Icons.cloud),
-                    title: Text(company.location,style: TextStyle(fontSize: 18, color: Colors.white),),
+                    title: Text(company.location,style: const TextStyle(fontSize: 18, color: Colors.white),),
                     trailing : const Icon(Icons.restore_from_trash),
                     onTap: () async {
                       final Weather _weather = await widget.repository
