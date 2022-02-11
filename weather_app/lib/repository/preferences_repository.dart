@@ -21,7 +21,7 @@ class PreferencesRepository {
     for(final Weather w in weathers){
       if(w.location == query){
         weathers.remove(w);
-        print(weathers.remove(w));
+        weathers.remove(w);
         break;
       }
 

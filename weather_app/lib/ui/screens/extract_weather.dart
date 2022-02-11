@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
-import 'dart:convert';
 import 'package:provider/provider.dart';
 import 'package:weather_app/blocs/weather_cubit.dart';
 
@@ -15,27 +14,28 @@ import 'home.dart';
 
 
 String city = "Angers";
-class Extract_weather extends StatelessWidget {
+class Extract_weather extends StatefulWidget {
   final Weather _weather;
-  Extract_weather(this._weather,{Key key}) : super(key: key);
+  const Extract_weather(this._weather,{Key key}) : super(key: key);
+
+  @override
+  State<Extract_weather> createState() => _Extract_weatherState();
+}
+
+class _Extract_weatherState extends State<Extract_weather> {
   final Repository repository = Repository(WeatherRepository(),PreferencesRepository());
 
-
-
-
-
  // final Weather _weather;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff030317),
+      backgroundColor: const Color(0xff030317),
 
       body :
 
       Column(
         children: [
-          CurrentWeather(_weather), TodayWeather(_weather)
+          CurrentWeather(widget._weather), TodayWeather(widget._weather)
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -45,7 +45,7 @@ class Extract_weather extends StatelessWidget {
 
         },
 
-        child: Icon(Icons.arrow_back_sharp),
+        child: const Icon(Icons.arrow_back_sharp),
       ),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
@@ -60,11 +60,8 @@ class Extract_weather extends StatelessWidget {
 class CurrentWeather extends StatefulWidget {
  final Weather weather;
 
-  CurrentWeather(this.weather);
+  CurrentWeather(this.weather, {Key key}) : super(key: key);
 
- Weather getweather(){
-   return this.weather;
- }
 
   final Repository repository = Repository(WeatherRepository(),PreferencesRepository());
 
@@ -76,28 +73,27 @@ class _CurrentWeatherState extends State<CurrentWeather> {
 
 
 
-  Weather _weather= Weather(8,6,0,'Clouds','Monday',"2","89","assets/sunny.png","7",'10','Angers');
+
 
   @override
   Widget build(BuildContext context) {
 
-    if (widget.weather!=null){
-      _weather=widget.weather;
-    };
+
+      Weather  _weather=widget.weather;
+
     return  GlowContainer(
       height: MediaQuery.of(context).size.height - 230,
-      margin: EdgeInsets.all(2),
-      padding: EdgeInsets.only(top: 50, left: 30, right: 30),
-      glowColor: Color(0xff00A1FF).withOpacity(0.5),
-      borderRadius: BorderRadius.only(
+      margin: const EdgeInsets.all(2),
+      padding: const EdgeInsets.only(top: 50, left: 30, right: 30),
+      glowColor: const Color(0xff00A1FF).withOpacity(0.5),
+      borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(60), bottomRight: Radius.circular(60)),
-      color: Color(0xff00A1FF),
+      color: const Color(0xff00A1FF),
       spreadRadius: 5,
       child: SingleChildScrollView(child:Column(
         children: [
           GestureDetector(
             onTap: () {
-              bool ok= false;
               List<Weather> weathers =Provider.of<WeatherCubit>(context, listen: false).state;
 
               if(weathers.contains(_weather)==false){
@@ -111,9 +107,9 @@ class _CurrentWeatherState extends State<CurrentWeather> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
-              children: [
+              children: const [
                 Text(
-                  "Add favorite ",
+                  "Add to favorite ",
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
                 Icon(
@@ -128,7 +124,7 @@ class _CurrentWeatherState extends State<CurrentWeather> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-                  Icon(CupertinoIcons.map_fill, color: Colors.white),
+                  const Icon(CupertinoIcons.map_fill, color: Colors.white),
               /*TextFormField(
                   initialValue: "Angers",
                 onChanged: (value) async {
@@ -155,7 +151,7 @@ class _CurrentWeatherState extends State<CurrentWeather> {
                   },
                   child :Text(
                     " " + _weather.location,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
               ),
               GestureDetector(
@@ -168,14 +164,14 @@ class _CurrentWeatherState extends State<CurrentWeather> {
 
                   });
                 },
-                child :Icon(CupertinoIcons.search, color: Colors.white
+                child :const Icon(CupertinoIcons.search, color: Colors.white
                 ),
               ),
 
             ],
           ),
 
-          Container(
+          SizedBox(
             height: 230,
             child: Stack(
               children: [
@@ -184,7 +180,7 @@ class _CurrentWeatherState extends State<CurrentWeather> {
                   image: AssetImage(_weather.image),
                   fit: BoxFit.fill,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Positioned(
@@ -198,19 +194,19 @@ class _CurrentWeatherState extends State<CurrentWeather> {
 
                           GlowText(
                             _weather.current.toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 height: 0.1,
                                 fontSize: 50,
                                 fontWeight: FontWeight.bold),
                           ),
 
                           Text(_weather.name,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 25,
                               )),
 
                           Text(_weather.day,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18,
                               ))
                         ],
@@ -219,10 +215,10 @@ class _CurrentWeatherState extends State<CurrentWeather> {
               ],
             ),
           ),
-          Divider(
+          const Divider(
             color: Colors.white,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           ExtraWeather(_weather)
@@ -234,7 +230,7 @@ class _CurrentWeatherState extends State<CurrentWeather> {
 }
 class ExtraWeather extends StatelessWidget {
   final Weather temp;
-  ExtraWeather(this.temp);
+  const ExtraWeather(this.temp, {Key key}) : super(key: key);
 
 
   @override
@@ -245,21 +241,21 @@ class ExtraWeather extends StatelessWidget {
       children: [
         Column(
           children: [
-            Icon(
+            const Icon(
               CupertinoIcons.wind,
               color: Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
               temp.wind.toString() + " Km/h",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               "Wind",
               style: TextStyle(color: Colors.black54, fontSize: 16),
             )
@@ -267,21 +263,21 @@ class ExtraWeather extends StatelessWidget {
         ),
         Column(
           children: [
-            Icon(
+            const Icon(
               CupertinoIcons.wind,
               color: Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
               temp.humidity.toString() + " %",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               "Humidity",
               style: TextStyle(color: Colors.black54, fontSize: 16),
             )
@@ -295,17 +291,17 @@ class ExtraWeather extends StatelessWidget {
 
 class TodayWeather extends StatelessWidget {
   final Weather weather;
-  TodayWeather(this.weather);
+  const TodayWeather(this.weather, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+      padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Text(
                 "Today",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.white),
@@ -313,18 +309,18 @@ class TodayWeather extends StatelessWidget {
 
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Container(
-            margin: EdgeInsets.only(
+            margin: const EdgeInsets.only(
               bottom: 30,
             ),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         border: Border.all(width: 0.2, color: Colors.white),
                         borderRadius: BorderRadius.circular(35)),
@@ -332,9 +328,9 @@ class TodayWeather extends StatelessWidget {
                       children: [
                         Text(
                           weather.min.toString() + "\u00B0",
-                          style: TextStyle(fontSize: 20,color: Colors.white),
+                          style: const TextStyle(fontSize: 20,color: Colors.white),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         Image(
@@ -342,10 +338,10 @@ class TodayWeather extends StatelessWidget {
                           width: 50,
                           height: 50,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
-                        Text(
+                        const Text(
                           "Temp min",
                           style: TextStyle(fontSize: 16, color: Colors.grey),
                         )
@@ -353,7 +349,7 @@ class TodayWeather extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         border: Border.all(width: 0.2, color: Colors.white),
                         borderRadius: BorderRadius.circular(35)),
@@ -361,9 +357,9 @@ class TodayWeather extends StatelessWidget {
                       children: [
                         Text(
                           weather.feels.toString() + "\u00B0",
-                          style: TextStyle(fontSize: 20,color: Colors.white),
+                          style: const TextStyle(fontSize: 20,color: Colors.white),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         Image(
@@ -371,10 +367,10 @@ class TodayWeather extends StatelessWidget {
                           width: 50,
                           height: 50,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
-                        Text(
+                        const Text(
                           "Feels like",
                           style: TextStyle(fontSize: 16, color: Colors.grey),
                         )
@@ -382,7 +378,7 @@ class TodayWeather extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         border: Border.all(width: 0.2, color: Colors.white),
                         borderRadius: BorderRadius.circular(35)),
@@ -390,9 +386,9 @@ class TodayWeather extends StatelessWidget {
                       children: [
                         Text(
                           weather.max.toString() + "\u00B0",
-                          style: TextStyle(fontSize: 20,color: Colors.white),
+                          style: const TextStyle(fontSize: 20,color: Colors.white),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         Image(
@@ -400,10 +396,10 @@ class TodayWeather extends StatelessWidget {
                           width: 50,
                           height: 50,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
-                        Text(
+                        const Text(
                           "Temp max",
                           style: TextStyle(fontSize: 16, color: Colors.grey),
                         )

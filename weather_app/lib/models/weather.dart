@@ -146,6 +146,11 @@ class Weather {
     // TODO: implement ==
     return other is Weather && location == other.location;
   }
+
+  @override
+  // TODO: implement hashCode
+  int get hashCode => super.hashCode;
+
 }
    /*List<Weather> todayWeather = [
       Weather(current: 23, image: "assets/rainy_2d.png", time: "10:00"),

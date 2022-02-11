@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather.dart';
-import 'package:weather_app/repository/preferences_repository.dart';
-import 'package:weather_app/repository/repository.dart';
-import 'package:weather_app/repository/weather_repository.dart';
 import 'package:weather_app/ui/screens/home.dart';
 import 'package:weather_app/ui/screens/extract_weather.dart';
 import 'package:weather_app/ui/screens/search_weather.dart';
