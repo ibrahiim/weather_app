@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
             child:
             Image.asset(
             	                'assets/images.jfif',
-            	                width: 600,
+            	                width: double.infinity,
                             height: 400,
             	                fit: BoxFit.cover,),),
               Container(
