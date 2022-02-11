@@ -1,6 +1,6 @@
 # weather_app
 Sur l'écran d'acceuil, appuyer sur + pour accéder à l'écran de recherche. Puis, appuyer sur search et rentrer le nom d'une ville. Et enfin, appuyer sur add to favorite pour rajouter la ville en favoris. 
-Clique sur une ville en favoris(page home) pour accéder à sa météo. 
+Cliquer sur une ville en favoris(page home) pour accéder à sa météo. 
 Appuyer longuement sur une ville pour la supprimer des favoris
 
 ! Ne pas oublier de changer la key appid de l'url dans weather_repository.dart pour utiliser l'Api.
