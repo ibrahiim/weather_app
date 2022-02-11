@@ -1,4 +1,5 @@
 # weather_app
+! Ne pas oublier de changer la key appid de l'url dans weather_repository.dart pour utiliser l'Api.
 
 Fonctionnalités :
 
