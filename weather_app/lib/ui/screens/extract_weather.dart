@@ -13,7 +13,7 @@ import 'package:weather_app/ui/screens/search_weather.dart';
 import 'home.dart';
 
 
-String city = "Angers";
+
 class Extract_weather extends StatefulWidget {
   final Weather _weather;
   const Extract_weather(this._weather,{Key key}) : super(key: key);
