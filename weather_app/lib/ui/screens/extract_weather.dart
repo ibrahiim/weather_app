@@ -35,7 +35,7 @@ class Extract_weather extends StatelessWidget {
 
       Column(
         children: [
-          CurrentWeather(_weather), TodayWeather()
+          CurrentWeather(_weather), TodayWeather(_weather)
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -76,8 +76,8 @@ class _CurrentWeatherState extends State<CurrentWeather> {
 
 
 
+  Weather _weather= Weather(8,6,0,'Clouds','Monday',"2","89","assets/sunny.png","7",'10','Angers');
 
-   Weather _weather= Weather(8,6,'Clouds','Monday',2,89,"assets/sunny.png",7,'10','Angers');
   @override
   Widget build(BuildContext context) {
 
@@ -294,6 +294,8 @@ class ExtraWeather extends StatelessWidget {
 }
 
 class TodayWeather extends StatelessWidget {
+  final Weather weather;
+  TodayWeather(this.weather);
 
   @override
   Widget build(BuildContext context) {
@@ -321,10 +323,94 @@ class TodayWeather extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  /*WeatherWidget(todayWeather[0]),
-                  WeatherWidget(todayWeather[1]),
-                  WeatherWidget(todayWeather[2]),
-                  WeatherWidget(todayWeather[3])*/
+                  Container(
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 0.2, color: Colors.white),
+                        borderRadius: BorderRadius.circular(35)),
+                    child: Column(
+                      children: [
+                        Text(
+                          weather.min.toString() + "\u00B0",
+                          style: TextStyle(fontSize: 20,color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Image(
+                          image: AssetImage(weather.image),
+                          width: 50,
+                          height: 50,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Temp min",
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 0.2, color: Colors.white),
+                        borderRadius: BorderRadius.circular(35)),
+                    child: Column(
+                      children: [
+                        Text(
+                          weather.feels.toString() + "\u00B0",
+                          style: TextStyle(fontSize: 20,color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Image(
+                          image: AssetImage(weather.image),
+                          width: 50,
+                          height: 50,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Feels like",
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 0.2, color: Colors.white),
+                        borderRadius: BorderRadius.circular(35)),
+                    child: Column(
+                      children: [
+                        Text(
+                          weather.max.toString() + "\u00B0",
+                          style: TextStyle(fontSize: 20,color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Image(
+                          image: AssetImage(weather.image),
+                          width: 50,
+                          height: 50,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Temp max",
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        )
+                      ],
+                    ),
+                  )
+
                 ]),
           )
         ],
@@ -333,7 +419,7 @@ class TodayWeather extends StatelessWidget {
   }
 }
 
-class WeatherWidget extends StatelessWidget {
+/*class WeatherWidget extends StatelessWidget {
   final Weather weather;
   WeatherWidget(this.weather);
   @override
@@ -368,4 +454,4 @@ class WeatherWidget extends StatelessWidget {
       ),
     );
   }
-}
+}*/

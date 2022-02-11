@@ -6,7 +6,7 @@ import 'package:weather_app/repository/weather_repository.dart';
 import 'package:weather_app/ui/screens/home.dart';
 import 'package:weather_app/ui/screens/extract_weather.dart';
 import 'package:weather_app/ui/screens/search_weather.dart';
-final Weather _weather= Weather(0,0,'Clouds',' ',0,0,"assets/sunny.png",0,'10','Search');
+final Weather _weather= Weather(0,0,0,'Clouds',' ',"0","0","assets/sunny.png","0",'10','Search');
 class MdsApp extends StatelessWidget {
 
   const MdsApp({Key key}) : super(key: key);

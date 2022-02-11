@@ -9,6 +9,11 @@ class WeatherCubit extends Cubit<List<Weather>> {
     emit([...state, company]);
     _repository.saveWeathers(state);
   }
+  void removeCompany(Weather company) {
+    emit([...state, company]);
+    _repository.removeWeathers(state,company.location);
+  }
+
   Future<void> loadCompanies() async {
     final List<Weather> companies = await _repository.loadWeathers();
     emit(companies);

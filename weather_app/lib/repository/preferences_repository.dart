@@ -15,6 +15,26 @@ class PreferencesRepository {
     prefs.setStringList('weathers', listJson);
   }
 
+  Future<void> deleteWeather(List<Weather> weathers,String query) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    for(final Weather w in weathers){
+      if(w.location == query){
+        weathers.remove(w);
+        print(weathers.remove(w));
+        break;
+      }
+
+
+    }
+    final List<String> listJson = [];
+    for (final Weather weather in weathers) {
+      listJson.add(weather.toJson());
+    }
+    prefs.setStringList('weathers', listJson);
+  }
+
+
   Future<List<Weather>> loadWeathers() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final List<String> list = prefs.getStringList('weathers');

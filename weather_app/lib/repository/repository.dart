@@ -14,6 +14,10 @@ class Repository {
   Future<Weather> searchWeathers(String query) {
     return _weatherRepository.fetchWeather(query);
   }
+  Future<void> removeWeathers(List<Weather> weathers,String query) async {
+    _preferencesRepository.deleteWeather(weathers,query);
+  }
+
   Future<void> saveWeathers(List<Weather> weathers) async {
     _preferencesRepository.saveWeather(weathers);
   }

@@ -4,11 +4,12 @@ import 'package:intl/intl.dart';
 class Weather {
    num max;
    num min;
-   num current;
+   num feels;
+   String current;
     String name;
     String day;
-   num wind;
-    num humidity;
+   String wind;
+    String humidity;
    String image;
     String time;
     String location;
@@ -16,6 +17,7 @@ class Weather {
    Weather(
           this.max,
           this.min,
+          this.feels,
           this.name,
           this.day,
           this.wind,
@@ -28,6 +30,7 @@ class Weather {
      return jsonEncode({
       'max':max,
      'min':min,
+       'feels':feels,
      'current':current,
      'name':name,
      'day':day,
@@ -45,11 +48,12 @@ class Weather {
      return Weather(
        map['max'],
        map['min'],
-       map['current'],
+       map['feels'],
+       (map['current']).toString(),
        map['name'],
        map['day'],
-       map['wind'],
-       map['humidity'],
+       (map['wind']).toString(),
+       (map['humidity']).toString(),
        map['image'],
        map['time'],
        map['location'],
@@ -108,6 +112,7 @@ class Weather {
      final String max = (json['main']['temp_max']).toString();
      final String min= (json['main']['temp_min']).toString();
      final String current = (json['main']['temp']).toString();
+       final String feels = (json['main']['feels_like']).toString();
      final String name = (json['weather'][0]['main']).toString();
      final String day = DateFormat("EEEE dd MMMM").format(date);
      final String wind = (json['wind']['speed']).toString();
@@ -126,12 +131,13 @@ class Weather {
        return Weather(
            num.parse(max).round()??0,
            num.parse(min).round()??0,
+           num.parse(feels).round()??0,
            name,
            day,
-           num.parse(wind).round()??0,
-      num.parse(humidity).round()??0,
+           (num.parse(wind).round()??0).toString(),
+      (num.parse(humidity).round()??0).toString(),
            image,
-           num.parse(current).round()??0,
+           (num.parse(current).round()??0).toString(),
            time,
            location);
    }
